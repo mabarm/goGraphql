@@ -10,14 +10,14 @@ type User {
   name: String!
 }
 
-type Query {
-  videos: [Video!]!
-}
-
 input NewVideo {
   title: String!
   url: String!
   userId: String!
+}
+
+type Query {
+  videos: [Video!]!
 }
 
 type Mutation {
