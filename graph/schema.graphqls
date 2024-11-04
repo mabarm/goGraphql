@@ -20,6 +20,11 @@ type Query {
   videos: [Video!]!
 }
 
+input DeleteUser {
+  userId: String!
+}
+
 type Mutation {
   createVideo(input: NewVideo!): Video!
+  deleteVideo(input: DeleteUser!): Video
 }

@@ -21,7 +21,17 @@ func (r *mutationResolver) CreateVideo(ctx context.Context, input model.NewVideo
 	}
 	r.videos = append(r.videos, video)
 	return video, nil
+}
 
+// DeleteVideo is the resolver for the deleteVideo field.
+func (r *mutationResolver) DeleteVideo(ctx context.Context, input model.DeleteUser) (*model.Video, error) {
+	for index, video := range r.videos {
+		if video.Author.ID == input.UserID {
+			r.videos = append(r.videos[:index], r.videos[index+1:]...)
+			return video, nil
+		}
+	}
+	return nil, fmt.Errorf("video with ID %s not found", input)
 }
 
 // Videos is the resolver for the videos field.
